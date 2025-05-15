@@ -1,12 +1,14 @@
-const pool = require('./pool')
+const pool = require('../pool')
+
+const getAllGames = 'SELECT * FROM games'
+const getGamesById = 'SELECT * FROM games WHERE gameid = $1'
+const createGame = 'INSERT INTO game (name) VALUES ($1)' 
+const updateGame = 'UPDATE game SET name = $1 WHERE gameid = $2'
 
 
-
-pool.query('SELECT NOW()', (err, res) => {
-  if (err) {
-    console.error('Connection failed:', err);
-  } else {
-    console.log('Connected! Time is:', res.rows[0]);
-  }
-  pool.end();
-});
+module.exports = {
+  getAllGames,
+  getGamesById,
+  createGame,
+  updateGame
+}
