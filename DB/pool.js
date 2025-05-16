@@ -20,3 +20,8 @@ const pool = new Pool ({
 })
 
 module.exports = pool
+
+
+/* had problem where string is undefined and
+    thought that databse was not connected to modules
+*/

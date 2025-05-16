@@ -11,5 +11,5 @@ module.exports = {
   getAllGenre,
   getGenreById,
   createGenre,
-  updateGenre,
+  updateGenre
 }
