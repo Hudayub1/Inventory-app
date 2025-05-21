@@ -7,9 +7,9 @@ control.use(express.urlencoded({extended:true}))
 
 getGames = async (req,res) => {
     try {
-        console.log('hello')
+        console.log('game')
         const result = await pool.query(queries.getAllGames);
-        res.json(result.rows)
+        res.render('./game_view/index', {game: result.rows})
     } catch (error) {
         console.error('All Game Error')
     }   
@@ -17,7 +17,11 @@ getGames = async (req,res) => {
 
 getGameId = async (req,res) => {
     try {
-        await pool.query()
+        const {body} = req
+        const {id} = req.params
+        const result = await pool.query(queries.getGameId, [req.params.id]);
+        res.render('game_view/index', {game: result.rows})
+        res.status(200).json(result.rows)
     } catch (error) {
         console.error('GameID Error')
     }
