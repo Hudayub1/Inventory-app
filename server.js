@@ -1,12 +1,18 @@
 const express = require('express')
 const app = express()
 const gameRoute = require('./Route/game_route')
+const devRoute = require('./Route/developer_route')
+const genreRoute = require('./Route/genre_route')
 const PORT = process.env.PORT || 5000
 
 app.use(express.urlencoded({extended:true}))
-app.use('/game', gameroute)
+app.use(express.json());
+
+app.use('/game', gameRoute)
+app.use('/dev', devRoute)
+app.use('/genre', genreRoute)
 
 
 app.listen(PORT, () => {
-    console.log('Hello there!')
+    console.log(`listening on port ${process.env.PORT}`)
 })

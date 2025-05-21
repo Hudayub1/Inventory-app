@@ -34,11 +34,14 @@ createGame = async (req,res) => {
 
 updateGame = async (req,res) => {
     try {
-        const {body} = req.body
-        const {id} = req.params.id
-        await pool.query(queries.updateGame)
+        const {body} = req
+        const {id} = req.params
+        await pool.query(queries.updateGame, [body, id]);
+        res.status(200).json({message: 'Game updated successfully'});
     } catch (error) {
-        console.error('GameID Error')
+        console.error('GameID Error', error.message)
+        res.status(500).json({error: error.message})
+       
     }
 }
 
@@ -50,10 +53,18 @@ updateGame = async (req,res) => {
   }
   
 
-getGames()
-/* Had problem here whereby res.json property is undefined,
-   Higly likely because table in sql not populated.
 
-   try and catch always when you want to test just to give very fast feedback
+/*   5/18/2025
+    Had problem here whereby res.json property is undefined,
+    Higly likely because table in sql not populated.
+
+    try and catch always when you want to test just to give very fast feedback
 */
 
+/*   5/21/2025
+    Had problem here whereby res.status property is undefined,
+    Higly likely because calling updateGame function where it is an 
+    express route handler and cant be called directly.
+
+    try and catch always when you want to test just to give very fast feedback
+*/
