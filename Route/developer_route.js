@@ -6,7 +6,7 @@ const controller = require('../Controller/dev_controller')
 router.get('/', controller.getDevs)
 router.get('/:id', controller.getDevsById)
 router.post('/' ,controller.createDevs)
-router.put('/', controller.updateDevs)
+router.put('/:id', controller.updateDevs)
 
 
 module.exports = router
