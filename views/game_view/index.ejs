@@ -4,3 +4,11 @@
     <li><%= games.name %> (Game ID: <%= games.gameid %>) (Genre ID: <%= games.genreid %>)</li>
     <% }) %>
 </ul>
+
+
+<h2>Add new Game</h2>
+<form action="/game" method="POST">
+    <label for="game">Game Name:</label>
+    <input type="text" id="game" name="game" required>
+    <button type = "submit">Add Game</button>
+</form>
