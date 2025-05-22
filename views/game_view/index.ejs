@@ -1,6 +1,6 @@
 <h1>This is game lists</h1>
 <ul> 
-    <% games.forEach(game => { %>
-    <li><%= game.name %> (Genre ID: <%= game.genreid %>)</li>
+    <% game.forEach(games => { %>
+    <li><%= games.name %> (Game ID: <%= games.gameid %>) (Genre ID: <%= games.genreid %>)</li>
     <% }) %>
 </ul>

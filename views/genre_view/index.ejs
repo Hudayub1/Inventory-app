@@ -1,7 +1,13 @@
 <h1>This is genre lists</h1>
-
 <ul>
-    <%= genres.forEach(genre => { %>
-    <li> <%= genre.genre %> </li>
-    < %}) %>
+    <% genre.forEach(genres => { %>
+    <li><%= genres.genre %> (Genre ID: <%= genres.genreid %>)</li>
+    <% }) %>
 </ul>
+
+<!-- i dont know what seems to be the unexpected token here
+// but i think it is because of the way i am trying to use the forEach loop
+// i am trying to use the forEach loop in a way that is not supported by ejs
+// i should use the forEach loop in a way that is supported by ejs
+    turns out i accidentally put equal sign b4 the forEach loop
+-->

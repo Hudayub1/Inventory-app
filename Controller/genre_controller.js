@@ -9,7 +9,7 @@ getGenre = async (req,res) => {
     try {
         console.log('genre')
         const result = await pool.query(queries.getAllGenre);
-        res.json(result.rows)
+        res.render('./genre_view/index', {genre: result.rows}) 
     } catch (error) {
         console.error('All genre Error')
     }   
@@ -17,7 +17,10 @@ getGenre = async (req,res) => {
 
 getGenreId = async (req,res) => {
     try {
-        await pool.query()
+        const {body} = req
+        const {id} = req.params
+        const result = await pool.query(queries.getGenreId, [req.params])
+        res.render('./genre_view/index', {genre: result.rows});
     } catch (error) {
         console.error('GameID Error')
     }

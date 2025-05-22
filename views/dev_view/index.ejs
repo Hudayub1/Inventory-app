@@ -1,6 +1,18 @@
 <h1> This is dev lists </h1>
 <ul>
-    <% developer.forEach(dev => { %>
-    <li><%=dev.name %> (Game ID: <%= dev.gameid %>)</li>
+    <% devs.forEach(developer => { %>
+    <li><%=developer.name %> (Dev ID: <%= developer.devid %>)
+        (Game ID: <%= developer.gameid %>) 
+         
+    </li>
 <% }) %>
 </ul>
+
+<!-- why does devs work for the forEach and not other variable name
+// because devs is the name of the variable passed from the controller to the view
+// and it is the name of the variable used in the forEach loop
+// the variable name in the forEach loop can be anything
+// but it is a good practice to use a name that is similar to the variable name passed from the controller
+// to the view
+
+-->

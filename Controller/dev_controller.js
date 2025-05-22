@@ -9,7 +9,7 @@ getDevs = async (req,res) => {
     try {
         console.log('dev')
         const result = await pool.query(queries.getAllDevs);
-        res.json(result.rows)
+        res.render('./dev_view/index', {devs: result.rows})
     } catch (error) {
         console.error('All Devs Error')
     }   
@@ -17,7 +17,11 @@ getDevs = async (req,res) => {
 
 getDevsById = async (req,res) => {
     try {
-        await pool.query()
+        const {body} = req
+        const {id} = req.params
+        const result = await pool.query(queries.getDevsById, [req.params])
+        res.render('./dev_view/index', {devs: result.rows})
+        res.status(200).json(result.rows)
     } catch (error) {
         console.error('GameID Error')
     }
