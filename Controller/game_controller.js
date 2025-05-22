@@ -29,10 +29,11 @@ getGameId = async (req,res) => {
 
 createGame = async (req,res) => {
     try {
-        createGame,
-        await pool.query()
+        const game = req.body
+        await pool.query(queries.createGame, [game])
     } catch (error) {
-        console.error('GameID Error')
+        console.error('Error creating Game', error.message)
+        res.status(500).json({error: error.message})
     }
 }
 

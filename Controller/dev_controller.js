@@ -29,10 +29,12 @@ getDevsById = async (req,res) => {
 
 createDevs = async (req,res) => {
     try {
-        createDevs,
-        await pool.query()
+        const {devs} = req.body
+        await pool.query(queries.createDevs, [devs])
+        res.redirect('/dev')
     } catch (error) {
-        console.error('GameID Error')
+        console.error('Error creating devs', error.message)
+        res.status(500).json({error: error.message})
     }
 }
 

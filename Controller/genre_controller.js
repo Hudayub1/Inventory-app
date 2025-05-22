@@ -28,10 +28,12 @@ getGenreId = async (req,res) => {
 
 createGenre = async (req,res) => {
     try {
-        createGenre,
-        await pool.query()
+        const {genre} = req.body
+        await pool.query(queries.createGenre, [genre])
+        res.redirect('/genre')
     } catch (error) {
-        console.error('GameID Error')
+        console.error('Error creating genre', error.message)
+        res.status(500).json({error: error.message})
     }
 }
 
