@@ -3,6 +3,10 @@
     <% game.forEach(games => { %>
     <li><%= games.name %> (Game ID: <%= games.gameid %>) (Genre ID: <%= games.genreid %>)</li>
     <% }) %>
+    <form action="/game/<%= games.gameid %>? method=PUT" method="POST" style="display:inline;">
+        <input type="text" name="game" value="<%= games.name %>" required>
+        <button type="submit">Edit</button>
+     </form>
 </ul>
 
 

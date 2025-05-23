@@ -39,11 +39,16 @@ createGenre = async (req,res) => {
 
 updateGenre = async (req,res) => {
     try {
-        const {body} = req.body
+        const {genre} = req.body
         const {id} = req.params.id
-        await pool.query(queries.updateGenre)
+        if (!genre || genre.trim() === '') {
+            return res.status(400).json({error: 'Genre name is required'})
+        }
+        await pool.query(queries.updateGenre, [genre, id])
+        res.redirect('/genre')
     } catch (error) {
-        console.error('GameID Error')
+        console.error('GameID Error', error.message)
+        res.status(500).json({error: error.message})
     }
 }
 
@@ -62,3 +67,8 @@ updateGenre = async (req,res) => {
    try and catch always when you want to test just to give very fast feedback
 */
 
+/*  23/05/2025
+    had some problems understanding update and delete operations
+    suddenly theres this npm called method overide i need to use
+    and the ejs sntax isnt helping due to syntax complexity
+*/

@@ -40,11 +40,16 @@ createDevs = async (req,res) => {
 
 updateDevs = async (req,res) => {
     try {
-        const {body} = req.body
+        const {devs} = req
         const {id} = req.params.id
-        await pool.query(queries.updateDevs)
+        if (!devs || devs.trim() === '') {
+            return res.status(400).json({error: 'Dev name is required'})
+        }
+        await pool.query(queries.updateDevs, [devs, id])
+        res.redirect('/dev')
     } catch (error) {
-        console.error('GameID Error')
+        console.error('Error updating devs', error.message);
+        res.status(500).json({error: error.message})
     }
 }
 

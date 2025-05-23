@@ -40,12 +40,15 @@ createGame = async (req,res) => {
 
 updateGame = async (req,res) => {
     try {
-        const {body} = req
+        const {game} = req
         const {id} = req.params
-        await pool.query(queries.updateGame, [body, id]);
-        res.status(200).json({message: 'Game updated successfully'});
+        if (!game || game.trim() === '') {
+            return res.status(400).json({error: 'Game name is required'})
+        }
+        await pool.query(queries.updateGame, [game, id]);
+        res.redirect('/game')
     } catch (error) {
-        console.error('GameID Error', error.message)
+        console.error('Error updating Game', error.message)
         res.status(500).json({error: error.message})
        
     }

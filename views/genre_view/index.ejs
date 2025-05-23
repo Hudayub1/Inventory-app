@@ -3,6 +3,10 @@
     <% genre.forEach(genres => { %>
     <li><%= genres.genre %> (Genre ID: <%= genres.genreid %>)</li>
     <% }) %>
+    <form action="/genre/<%= genre.genreid %>? method=PUT" method="POST">
+        <input type="text" name="genre" value="<%= genre.genre %>" required>
+        <button type="submit">Edit genre</button>
+    </form>
 </ul>
 
 <!-- i dont know what seems to be the unexpected token here

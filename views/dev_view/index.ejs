@@ -3,7 +3,10 @@
     <% devs.forEach(developer => { %>
     <li><%=developer.name %> (Dev ID: <%= developer.devid %>)
         (Game ID: <%= developer.gameid %>) 
-         
+         <form action="/dev/<%= developer.devid %>? method=PUT" method="POST" style="display:inline;">
+            <input type="text" name="dev" value="<%= developer.name %>" required>
+            <button type="submit">Edit</button>
+         </form>
     </li>
 <% }) %>
 </ul>
@@ -23,3 +26,4 @@
     <input type="text" id="dev" name="dev" required>
     <button type = "submit">Add Dev</button>
 </form>
+
