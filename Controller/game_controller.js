@@ -31,6 +31,7 @@ createGame = async (req,res) => {
     try {
         const game = req.body
         await pool.query(queries.createGame, [game])
+        res.redirect('/game')
     } catch (error) {
         console.error('Error creating Game', error.message)
         res.status(500).json({error: error.message})

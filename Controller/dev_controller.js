@@ -29,7 +29,7 @@ getDevsById = async (req,res) => {
 
 createDevs = async (req,res) => {
     try {
-        const {devs} = req.body
+        const devs = req.body
         await pool.query(queries.createDevs, [devs])
         res.redirect('/dev')
     } catch (error) {
